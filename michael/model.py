@@ -56,6 +56,9 @@ import nltk
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.corpus import stopwords
 
+def get_baseline(df):
+    return f'Baseline Accuracy: {round(df.type.value_counts(normalize=True).max(), 4)*100}'
+
 def top_3_16_personalities(df):
     # Make the object
     tfidf = TfidfVectorizer()
@@ -163,4 +166,27 @@ def top_3_16_personalities(df):
     print('Cluster MultinomialNB Train Accuracy: {:.2%}'.format(accuracy_score(train2.actual, train2.clust_predicted_MNBclf)))
     print('-------------')
     print('Cluster MultinomialNB Validate Accuracy: {:.2%}'.format(accuracy_score(validate2.actual, validate2.clust_predicted_MNBclf)))
+    print('-------------')
+
+def test_16_personalities(df):
+    # Make the object
+    tfidf = TfidfVectorizer()
+    # Fit/Transform
+    X = tfidf.fit_transform(df.lemmatized)
+    # What we are predicting
+    y = df.type
+    # Split X and y into train, validate, and test 
+    X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, stratify=y, test_size=.2, random_state=123)
+    X_train, X_validate, y_train, y_validate = train_test_split(X_train_val, y_train_val, stratify=y_train_val, test_size=.25, random_state=123)
+    # Make test a dataframe
+    test = pd.DataFrame(dict(actual=y_test))
+    # Make the object and fit it
+    MNBclf = MultinomialNB()
+    MNBclf.fit(X_train, y_train)
+    # Make columns for the predictions
+    test['predicted_MNBclf'] = MNBclf.predict(X_test)
+
+    # Print out the results
+    print('-------------')
+    print('TF-IDF MultinomialNB Test Accuracy: {:.2%}'.format(accuracy_score(test.actual, test.predicted_MNBclf)))
     print('-------------')
