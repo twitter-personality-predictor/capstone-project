@@ -181,7 +181,9 @@ Using a tweets to analyze behavior and classify into one of the 16 Myers Briggs 
 ---
 
 # How to reproduce our work
-- Download this file https://drive.google.com/file/d/1k7Aq0P5hOPj1D3ndnwXDXkZ7tQzOYUrf/view?usp=share_link
+- Download these files https://drive.google.com/file/d/1k7Aq0P5hOPj1D3ndnwXDXkZ7tQzOYUrf/view?usp=share_link
+- https://drive.google.com/file/d/1MvmoydaqC1PwBYf4xSul50hb2459KxBq/view?usp=share_link
+- https://drive.google.com/file/d/1gbqMy6L-T2mNGX7vsGKvUqYfNE_C6ipu/view?usp=share_link
   (This is to avoid the long web-scarping duration and repeatable results.)
 - Download all files in the main repository.
 - Open the final notebook and run top to bottom.
