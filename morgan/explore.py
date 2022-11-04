@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(font_scale=2)
-
+from wordcloud import WordCloud
 
 
 # for stats
@@ -99,7 +99,24 @@ def q1_stats(train):
         ''')
 
 def q2a_vis(train):
-    print('placeholder')
+    all_words = (' '.join(train.lemmatized)).split()
+
+    all_cloud = WordCloud(background_color='white', height=1000, width=400).generate(' '.join(all_words))
+
+    # Importing mask
+    from PIL import Image
+
+    twitter_mask = np.array(Image.open("./Twitter.png"))
+
+    # Plot the wordcloud with the mask applied
+    wc = WordCloud(background_color='skyblue', mask= twitter_mask, colormap = 'Blues',
+                   contour_color='white', contour_width=1).generate(' '.join(all_words))
+    plt.figure(figsize=[10,10])
+    plt.tight_layout()
+    plt.imshow(wc, interpolation="bilinear")
+    plt.axis("off")
+    plt.title('Most Common Words Overall')
+    plt.show()
     
 def q2a_stats(train):
     print('placeholder')
