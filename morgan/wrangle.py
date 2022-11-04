@@ -195,7 +195,7 @@ def wrangle():
     s = nltk.sentiment.SentimentIntensityAnalyzer()
     df['sentiment'] = df.lemmatized.apply(lambda doc: s.polarity_scores(doc)['compound'])
     df['message_length'] = df['lemmatized'].str.len()
-    df['word_count'] = df['lemmatized'].str.split(' ').apply(len)
+    df['word_count'] = (df['lemmatized'].str.split(' ').apply(len))
     
     df['i_e'] = np.where(df['type'].str[0] == 'i', 'i', 'e')
     df['s_n'] = np.where(df['type'].str[1] == 's', 's', 'n')

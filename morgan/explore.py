@@ -13,7 +13,55 @@ sns.set(font_scale=2)
 import scipy.stats as stats
 
 def overall_data_vis(train):
-    print('placeholder for pie chart here')
+    plt.figure(figsize=(12,8))
+    # palette = {c: "green" if c in ['intj', 'intp', 'entj', 'entp']  else 'r' for c in df['type']}
+    ax = sns.histplot(data=train,
+                      x='personality_domain',
+                      hue='type',
+                      discrete=True, 
+                      multiple='stack', 
+                      palette=np.array(sns.color_palette("Blues_d", 1))
+                     )
+
+    # # iterate through each container
+    # for c in ax.containers:
+
+    #     # Optional: if the segment is small or 0, customize the labels
+    #     labels = [round(v.get_height()) if v.get_height() > 0 else '' for v in c]
+
+    #     # remove the labels parameter if it's not needed for customized labels
+    #     ax.bar_label(c, labels=labels, label_type='center', fontsize=16)
+
+    # analysts
+    plt.text(-.1, 52.5, 'INTJ', fontsize=16)
+    plt.text(-.1, 2, 'INTP', fontsize=16)
+    plt.text(-.1, 34, 'ENTP', fontsize=16)
+    plt.text(-.1, 12, 'ENTJ', fontsize=16)
+
+    # sentinels
+    plt.text(.88, 58, 'ESFJ', fontsize=16)
+    plt.text(.88, 29, 'ISFJ', fontsize=16)
+    plt.text(.88, 13, 'ESTJ', fontsize=16)
+    plt.text(.88, 2.5, 'ISTJ', fontsize=16)
+
+    # explorers
+    plt.text(1.86, 122, 'ESTP', fontsize=16)
+    plt.text(1.86, 77, 'ESFP', fontsize=16)
+    plt.text(1.89, 36, 'ISTP', fontsize=16)
+    plt.text(1.89, 13, 'ISFP', fontsize=16)
+
+    # diplomats
+    plt.text(2.87, 70, 'ENFJ', fontsize=16)
+    plt.text(2.87, 55, 'INFP', fontsize=16)
+    plt.text(2.87, 32, 'ENFP', fontsize=16)
+    plt.text(2.89, 6, 'INFJ', fontsize=16)
+
+
+    plt.xlabel('Personality Domain')
+    plt.legend().set_visible(False)
+    plt.title('Data Population Split by Personality Domain and Type')
+    plt.show()    
+    
     
 def q1_vis(train):
     plt.figure(figsize=(12,8))
@@ -60,7 +108,24 @@ def q2b_vis(train):
     print('placeholder')
     
 def q2b_stats(train):
-    print('placeholder')
+    α = 0.05
+    introvert = train[train.i_e == 'i'].message_length/100
+    extrovert = train[train.i_e == 'e'].message_length/100
+
+    t, pval = stats.levene(extrovert, introvert)
+
+    t, p = stats.ttest_ind(extrovert, introvert, equal_var=(pval>α))
+
+    if (t > 1) & (p/2 < α):
+        print('''
+        Reject the Null Hypothesis. 
+        Findings suggest the mean tweet length is longer for extroverts than introverts.
+        ''')
+    else:
+        print('''
+        Fail to Reject the Null Hypothesis.
+        Findings suggest the mean tweet length is shorter or equal for extroverts compared to introverts.
+        ''')
     
 def q3_vis(train):
     fig, axes = plt.subplots(1, 4, sharey=True, figsize=(20,8))
