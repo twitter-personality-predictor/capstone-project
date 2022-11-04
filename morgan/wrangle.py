@@ -207,8 +207,8 @@ def wrangle():
 
 def split_data(df):
     # create train and test (80/20 split) from the orginal dataframe
-    train, test = train_test_split(df, test_size=0.2, random_state=123)
+    train, test = train_test_split(df, test_size=0.2, random_state=123, stratify=df.type)
     # create train and validate (75/25 split) from the train dataframe
-    train, val = train_test_split(train, test_size=.25, random_state=123)
+    train, val = train_test_split(train, test_size=.25, random_state=123, stratify=train.type)
     
     return train, val, test

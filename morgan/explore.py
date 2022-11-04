@@ -33,21 +33,21 @@ def q1_vis(train):
 def q1_stats(train):
     α = 0.05
     analysts = train[train.personality_domain == 'analyst'].sentiment
-    explorers = train[train.personality_domain == 'explorer'].sentiment
+    sentinel = train[train.personality_domain == 'sentinel'].sentiment
 
-    t, pval = stats.levene(analysts, explorers)
+    t, pval = stats.levene(analysts, sentinel)
 
-    t, p = stats.ttest_ind(analysts, explorers, equal_var=(pval>α))
+    t, p = stats.ttest_ind(analysts, sentinel, equal_var=(pval>α))
 
     if (t > 1) & (p/2 < α):
         print('''
         Reject the Null Hypothesis. 
-        Findings suggest the mean sentiment for explorers is higher than analysts.
+        Findings suggest the mean sentiment for sentinels is higher than analysts.
         ''')
     else:
         print('''
         Fail to Reject the Null Hypothesis.
-        Findings suggest there is less than or equal mean sentiment between analysts and explorers.
+        Findings suggest there is less than or equal mean sentiment between analysts and sentinels.
         ''')
 
 def q2a_vis(train):
