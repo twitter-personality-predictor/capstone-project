@@ -20,7 +20,7 @@ This project is designed to analyze the relationship between the 16 Myers Briggs
 - wrangle.py with all data acquisition and preparation functions used
 - model.py with all modeling functions 
 - working_report.ipynb showing all work throughout the pipeline
-- Canva slideshow to be used for our 10 minute presentation (https://www.canva.com/design/DAFQz8ntybg/qR2b9cpmcazG0GLN8FuhAA/view?utm_content=DAFQz8ntybg&      utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)  
+- Canva slideshow to be used for our 10 minute presentation (https://www.canva.com/design/DAFQz8ntybg/qR2b9cpmcazG0GLN8FuhAA/view?utm_content=DAFQz8ntybg&\     utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)  
 
 
 ----
