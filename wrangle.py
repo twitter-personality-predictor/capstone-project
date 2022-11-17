@@ -59,8 +59,8 @@ def split_data(df):
 
 
 
-urls='https://drive.google.com/file/d/1DwQ79KSIqNZ9hStqHzxrsKIxVou6Jh9K/view?usp=share_link','https://drive.google.com/file/d/1YCU9t-rhhwRkvRikFP9TsRrrYNmnfnU_/view?usp=share_link','https://drive.google.com/file/d/1k7Aq0P5hOPj1D3ndnwXDXkZ7tQzOYUrf/view?usp=share_link','https://drive.google.com/file/d/1MvmoydaqC1PwBYf4xSul50hb2459KxBq/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link'
-names='aggName_wo_emojis.pkl','aggName.pkl','fivezerominpull.pkl','stopwords.pkl','tryagain.pkl','words.pkl'
+urls=['https://drive.google.com/file/d/1DwQ79KSIqNZ9hStqHzxrsKIxVou6Jh9K/view?usp=share_link','https://drive.google.com/file/d/1YCU9t-rhhwRkvRikFP9TsRrrYNmnfnU_/view?usp=share_link','https://drive.google.com/file/d/1k7Aq0P5hOPj1D3ndnwXDXkZ7tQzOYUrf/view?usp=share_link','https://drive.google.com/file/d/1MvmoydaqC1PwBYf4xSul50hb2459KxBq/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link', 'https://drive.google.com/file/d/15MaT4eG3T8vA5azb34V-YaWp8FFHy9cU/view?usp=share_link']
+names=['aggName_wo_emojis.pkl','aggName.pkl','fivezerominpull.pkl','stopwords.pkl','tryagain.pkl','words.pkl', 'combined.pkl']
 
 def import_pickles(urls,names):
     newurls=[]
