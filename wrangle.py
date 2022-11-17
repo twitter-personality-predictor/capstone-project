@@ -14,6 +14,10 @@ from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
 from sklearn.model_selection import train_test_split
 
+
+import urllib.request
+import pickle
+
 def wrangle():
     """This function is all encompassing to acquire and clean/prepare the data. there are 5 functions that are embedded inside this function that are used to return the personality information in a DataFrame"""
     df=pd.read_pickle('tweet_data.pkl')
@@ -51,3 +55,25 @@ def split_data(df):
     train, val = train_test_split(train, test_size=.25, random_state=123)
     
     return train, val, test
+
+
+
+
+urls='https://drive.google.com/file/d/1DwQ79KSIqNZ9hStqHzxrsKIxVou6Jh9K/view?usp=share_link','https://drive.google.com/file/d/1YCU9t-rhhwRkvRikFP9TsRrrYNmnfnU_/view?usp=share_link','https://drive.google.com/file/d/1k7Aq0P5hOPj1D3ndnwXDXkZ7tQzOYUrf/view?usp=share_link','https://drive.google.com/file/d/1MvmoydaqC1PwBYf4xSul50hb2459KxBq/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link','https://drive.google.com/file/d/1LYqb0j_5hUO1W_xnvhCxx0t0FOhoJqvd/view?usp=share_link'
+names='aggName_wo_emojis.pkl','aggName.pkl','fivezerominpull.pkl','stopwords.pkl','tryagain.pkl','words.pkl'
+
+def import_pickles(urls,names):
+    newurls=[]
+    for x in urls:
+        rem1='/view?usp=share_link'
+        rep='file/d/'
+        repfill='uc?id='
+        x=x.replace(rem1,'').replace(rep,repfill)
+        newurls.append(x)
+    urldict=tuple(zip(names,urls))
+    urldict=import_pickles(urls,names)
+    for i in urldict:
+        urllib.request.urlretrieve(i[1],i[0])
+    
+    return None
+    
